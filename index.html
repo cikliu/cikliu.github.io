@@ -1,34 +1,91 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
+<head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Cikliu.GitHub.io : ">
     <title>璇璇</title>
     <style>
       *{margin:0px; padding:0px;}
+	  a,img{border:0;text-decoration:none;}
       body{background:#333;}
-      img {width:200px; height:200px;}
-      div{ width:620px; height:200px; margin:auto}
+      img {width:200px; height:200px; float:left; margin-left:10px}
+      .div01{ width:650px; height:200px; margin:auto; margin-top:10px;}
+		  a{
+		display: block;
+		width: 200px;
+		height: 200px;
+		text-align: center;
+		position: relative;
+	}
+	.img{
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		display:none;
+	}
+	.info{
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		background: #f0f0f0;
+		color: #369242;
+		line-height:200px;
+		float:left;
+	}
+	#horizontal{
+		width: 200px;
+		height: 200px;
+		float:left;
+		margin-left:10px;
+		}
     </style>
-  </head>
+</head>
+<body>
+	<div class="div01">
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/1.jpg' />
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/2.jpg' />
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/3.jpg' />
+    </div>
+    <div class="div01">
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/4.jpg' />
+        <div id="horizontal" class="brand horizontal">
+       		<a href="#">
+            	<div class="info">戳我！戳我！</div>
+                <img alt="" src="https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/5.jpg" class=".img" style="margin-left:0px;"/>
+            </a>
+    	</div>
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/6.jpg' />
+    </div>
+    <div class="div01">
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/7.jpg' />
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/8.jpg' />
+    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/9.jpg' />
+    </div>
+	
 
-  <body>
-   <div>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/1.jpg'></img>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/2.jpg'></img>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/3.jpg'></img>
-    </div>
-    <div>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/4.jpg'></img>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/6.jpg' style="float:right"></img>
-    </div>
-    <div>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/7.jpg'></img>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/8.jpg'></img>
-    	<img src='https://raw.githubusercontent.com/cikliu/cikliu.github.io/master/images/9.jpg'></img>
-    </div>
+	<script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+    var turn = function(target,time,opts){
+        target.find('a').hover(function(){
+            $(this).find('.info').stop().animate(opts[0],time,function(){
+                $(this).hide().next().show();
+                $(this).next().animate(opts[1],time);
+            });
+        },function(){
+            $(this).find('img').animate(opts[0],time,function(){
+                $(this).hide().prev().show();
+                $(this).prev().animate(opts[1],time);
+            });
+        });
+    }
+    var verticalOpts = [{'width':0},{'width':'180px'}];
+    turn($('#vertical'),100,verticalOpts);
+    var horizontalOpts = [{'height':0,'top':'120px'},{'height':'200px','top':0}];
+    turn($('#horizontal'),100,horizontalOpts);
+    </script>
+   
 
-  </body>
+</body>
+ 
 </html>
